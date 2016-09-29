@@ -7,6 +7,17 @@ public class User {
     String address;
     String email;
 
+    public User() {
+    }
+
+    public User(Integer id, String userName, String address, String email) {
+
+        this.id = id;
+        this.username = userName;
+        this.address = address;
+        this.email = email;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -36,16 +47,6 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public User() {}
-
-    public User(Integer id, String userName, String address, String email) {
-
-        this.id = id;
-        this.username = userName;
-        this.address = address;
         this.email = email;
     }
 }

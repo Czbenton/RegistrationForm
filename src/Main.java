@@ -33,7 +33,7 @@ public class Main {
                 (request, response) -> {
                     String body = request.body();
                     JsonParser p = new JsonParser();
-                    User user = p.parse(body,User.class);
+                    User user = p.parse(body, User.class);
                     insertUser(conn, user.username, user.address, user.email);
                     return "";
                 }
@@ -43,8 +43,8 @@ public class Main {
                 (request, response) -> {
                     String body = request.body();
                     JsonParser p = new JsonParser();
-                    User user = p.parse(body,User.class);
-                    updateUser(conn,user.id,user.username,user.address,user.email);
+                    User user = p.parse(body, User.class);
+                    updateUser(conn, user.id, user.username, user.address, user.email);
                     return "";
                 }
         );
@@ -52,12 +52,10 @@ public class Main {
                 "/user/:id",
                 (request, response) -> {
                     Integer id = Integer.parseInt(request.params(":id"));
-                    deleteUser(conn,id);
+                    deleteUser(conn, id);
                     return "";
                 }
         );
-
-
     }
 
     public static void createTables(Connection conn) throws SQLException {
@@ -69,12 +67,12 @@ public class Main {
     public static ArrayList<User> selectUsers(Connection conn) throws SQLException {
         ArrayList<User> users = new ArrayList<>();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users");
-        ResultSet reslts = stmt.executeQuery();
-        while (reslts.next()) {
-            Integer id = reslts.getInt("id");
-            String userName = reslts.getString("username");
-            String address = reslts.getString("address");
-            String eMail = reslts.getString("email");
+        ResultSet results = stmt.executeQuery();
+        while (results.next()) {
+            Integer id = results.getInt("id");
+            String userName = results.getString("username");
+            String address = results.getString("address");
+            String eMail = results.getString("email");
             users.add(new User(id, userName, address, eMail));
         }
         return users;

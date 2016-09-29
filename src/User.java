@@ -3,9 +3,9 @@
  */
 public class User {
     Integer id;
-    String userName;
+    String username;
     String address;
-    String eMail;
+    String email;
 
     public Integer getId() {
         return id;
@@ -15,12 +15,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getAddress() {
@@ -31,21 +31,21 @@ public class User {
         this.address = address;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public User() {}
 
-    public User(Integer id, String userName, String address, String eMail) {
+    public User(Integer id, String userName, String address, String email) {
 
         this.id = id;
-        this.userName = userName;
+        this.username = userName;
         this.address = address;
-        this.eMail = eMail;
+        this.email = email;
     }
 }

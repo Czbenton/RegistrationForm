@@ -34,7 +34,7 @@ public class Main {
                     String body = request.body();
                     JsonParser p = new JsonParser();
                     User user = p.parse(body,User.class);
-                    insertUser(conn, user.userName, user.address, user.eMail);
+                    insertUser(conn, user.username, user.address, user.email);
                     return "";
                 }
         );
@@ -43,8 +43,8 @@ public class Main {
                 (request, response) -> {
                     String body = request.body();
                     JsonParser p = new JsonParser();
-                    User user = p.parse(body);
-                    updateUser(conn,user.id,user.userName,user.address,user.eMail);
+                    User user = p.parse(body,User.class);
+                    updateUser(conn,user.id,user.username,user.address,user.email);
                     return "";
                 }
         );
@@ -72,9 +72,9 @@ public class Main {
         ResultSet reslts = stmt.executeQuery();
         while (reslts.next()) {
             Integer id = reslts.getInt("id");
-            String userName = reslts.getString("userName");
+            String userName = reslts.getString("username");
             String address = reslts.getString("address");
-            String eMail = reslts.getString("eMail");
+            String eMail = reslts.getString("email");
             users.add(new User(id, userName, address, eMail));
         }
         return users;
@@ -89,7 +89,7 @@ public class Main {
     }
 
     public static void updateUser(Connection conn, int id, String userName, String address, String eMail) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("UPDATE user TABLE SET VALUES (?, ?, ? ) WHERE id = ?");
+        PreparedStatement stmt = conn.prepareStatement("UPDATE users TABLE SET userName = ?, address=?, eMail=? WHERE id = ?");
         stmt.setString(1, userName);
         stmt.setString(2, address);
         stmt.setString(3, eMail);
